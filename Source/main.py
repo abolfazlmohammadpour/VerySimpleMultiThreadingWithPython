@@ -1,15 +1,40 @@
 import threading
 import time
 
+
 def FirstTask():
-    print("Start First Task")
-    time.sleep(float(2))
-    print("End Of First Task")
+    Second = Minute = Hour = 0
+    while True:
+        Second += 1
+        if Second >= 60:
+            Second = 0
+            Minute += 1
+        if Minute >= 60:
+            Minute = 0
+            Hour += 1
+        if Hour >= 24:
+            Hour = 0
+
+        print(f"FirstThread {Hour}:{Minute}:{Second}")
+        time.sleep(1)
+
 
 def SecondTask():
-    print("Start Second Task")
-    time.sleep(float(1))
-    print("End Of Second Task")
+    Second = Minute = Hour = 0
+    while True:
+        Second += 1
+        if Second >= 60:
+            Second = 0
+            Minute += 1
+        if Minute >= 60:
+            Minute = 0
+            Hour += 1
+        if Hour >= 24:
+            Hour = 0
+
+        print(f"SecondThread {Hour}:{Minute}:{Second}")
+        time.sleep(1)
+
 
 FirstThread = threading.Thread(target=FirstTask)
 SecondThread = threading.Thread(target=SecondTask)
